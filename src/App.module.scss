@@ -1,0 +1,30 @@
+* {
+  font-family: Roboto;
+  font-size: 18px;
+}
+.container {
+  display: grid;
+  grid-template-areas:
+    'head head head'
+    'filt filt filt'
+    'gal gal gal'
+    'pag pag pag';
+
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.main {
+  &__header {
+    grid-area: head;
+  }
+  &__filter {
+    grid-area: filt;
+  }
+  &__gallery {
+    grid-area: gal;
+  }
+  &__pagination {
+    grid-area: pag;
+  }
+}
