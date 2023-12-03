@@ -4,13 +4,13 @@ import style from './Theme.module.scss';
 
 const Theme = () => {
   return (
-    <div className={style.theme}>
+    <button className={style.btn}>
       <img
         src={themeBlackIcon}
         alt="Theme web-application"
         className={style.themeIcon}
       />
-    </div>
+    </button>
   );
 };
 
