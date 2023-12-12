@@ -1,10 +1,11 @@
 import Filter from './Filter/Filter';
 import FilterInput from './FilterInput/FilterInput';
-import FilterSelect from './FilterSelect/FilterSelect';
 
 import style from './FilterContainer.module.scss';
+import FilterLIst from './FilterLIst/FilterLIst';
+import FilterSelect from './FilterSelect/FilterSelect';
 
-const FilterContainer = () => {
+const FilterContainer: React.FC = () => {
   return (
     <div className={style.filterContainer}>
       <div className={style.container}>
@@ -13,7 +14,7 @@ const FilterContainer = () => {
         </Filter>
 
         <Filter>
-          <FilterSelect />
+          <FilterLIst title={'Some body'} Child={FilterSelect} />
         </Filter>
       </div>
     </div>

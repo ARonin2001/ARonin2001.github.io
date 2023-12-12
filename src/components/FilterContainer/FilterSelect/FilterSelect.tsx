@@ -1,49 +1,28 @@
-import { ChangeEvent, MouseEventHandler, useState } from 'react';
+import SimpleBar from 'simplebar-react';
+import FilterSelectLi from './FilterSelectLi/FilterSelectLi';
+
+import 'simplebar-react/dist/simplebar.min.css';
+import './ScrollBar.css';
 import style from './FilterSelect.module.scss';
 
-const FilterSelect: React.FC = () => {
-  let [selectActive, setSelectActive] = useState(false);
-  let [title, setTitle] = useState<string | null>('Author');
+interface Props {
+  setTitle: (title: string) => void;
+  title: string[];
+}
 
-  const toggleSelectActive = () => {
-    setSelectActive((prev: boolean) => !prev);
-  };
-
-  const handleAuthorClick = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-  ) => {
-    let liText = e.currentTarget.innerText;
-    setTitle(liText);
-  };
-
-  let subSelectClassActive: string | null = selectActive
-    ? style.sub__select_active
-    : null;
-
-  let selectClassActive: string | null = selectActive
-    ? style.select_active
-    : null;
-
+const FilterSelect: React.FC<Props> = ({ setTitle, title }) => {
   return (
-    <>
-      <ul
-        className={style.select + ' ' + selectClassActive}
-        onClick={() => toggleSelectActive()}
-      >
-        <li className={style.container}>
-          <span className={style.title}>{title}</span>
-        </li>
-
-        <ul className={style.sub__select + ' ' + subSelectClassActive}>
-          <li onClick={(e) => handleAuthorClick(e)}>Salvador dali</li>
-          <li onClick={(e) => handleAuthorClick(e)}>Vincent van gogh</li>
-          <li onClick={(e) => handleAuthorClick(e)}>Claude monet</li>
-          <li onClick={(e) => handleAuthorClick(e)}>Salvador dali</li>
-          <li onClick={(e) => handleAuthorClick(e)}>Salvador dali</li>
+    <div className={style.container} data-simplebar>
+      <SimpleBar style={{ maxHeight: 300 }} forceVisible="y" autoHide={false}>
+        <ul className={style.select}>
+          {title.map((el, index) => {
+            return (
+              <FilterSelectLi key={index} setTitle={setTitle} title={el} />
+            );
+          })}
         </ul>
-      </ul>
-      <div className={style.arrow}></div>
-    </>
+      </SimpleBar>
+    </div>
   );
 };
 
