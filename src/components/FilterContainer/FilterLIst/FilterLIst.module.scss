@@ -5,6 +5,7 @@
   max-height: 345px;
   padding: 0;
   cursor: pointer;
+  background-color: #fff;
 
   &.active .children {
     max-height: 345px;
@@ -18,6 +19,10 @@
 
   .title {
     padding: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 81%;
   }
 
   .arrow {

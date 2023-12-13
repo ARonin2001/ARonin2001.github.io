@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import style from './Filter.module.scss';
 
 interface FilterProps {
@@ -5,7 +7,23 @@ interface FilterProps {
 }
 
 const Filter = (props: FilterProps) => {
-  return <div className={style.filter}>{props.children}</div>;
+  let [active, setActive] = useState(false);
+
+  const classActive = active ? style.active : '';
+
+  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+    console.log(e.target);
+    setActive((prev) => !prev);
+  };
+
+  return (
+    <div
+      onClick={(e) => handleClick(e)}
+      className={style.filter + ' ' + classActive}
+    >
+      {props.children}
+    </div>
+  );
 };
 
 export default Filter;

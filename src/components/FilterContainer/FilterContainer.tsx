@@ -1,21 +1,36 @@
 import Filter from './Filter/Filter';
 import FilterInput from './FilterInput/FilterInput';
-
-import style from './FilterContainer.module.scss';
 import FilterLIst from './FilterLIst/FilterLIst';
 import FilterSelect from './FilterSelect/FilterSelect';
+import FilterCreated from './FilterCreated/FilterCreated';
+
+import style from './FilterContainer.module.scss';
 
 const FilterContainer: React.FC = () => {
   return (
-    <div className={style.filterContainer}>
+    <div className={style.mainContainer}>
       <div className={style.container}>
-        <Filter>
-          <FilterInput />
-        </Filter>
+        <div className={style.filterContainer}>
+          <Filter>
+            <FilterInput />
+          </Filter>
+        </div>
 
-        <Filter>
-          <FilterLIst title={'Some body'} Child={FilterSelect} />
-        </Filter>
+        <div className={style.filterContainer}>
+          <Filter>
+            <FilterLIst title={'Author'} Child={FilterSelect} />
+          </Filter>
+        </div>
+        <div className={style.filterContainer}>
+          <Filter>
+            <FilterLIst title={'Locatino'} Child={FilterSelect} />
+          </Filter>
+        </div>
+        <div className={style.filterContainer}>
+          <Filter>
+            <FilterLIst title={'Created'} Child={FilterCreated} />
+          </Filter>
+        </div>
       </div>
     </div>
   );

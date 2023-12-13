@@ -1,17 +1,18 @@
 .filter {
+  grid-area: filt;
   position: relative;
   font-family: 'Roboto-Regular';
   font-size: 13px;
+  width: 100%;
 
   & > * {
     border: 1px solid #0000004d;
     border-radius: 8px;
-    // padding: 14px 15px 13px 15px;
     padding: 15px;
     width: 100%;
-    // min-height: 45px;
   }
-  & > *:focus {
-    border-color: #000;
-  }
+}
+
+.active > * {
+  border-color: #000;
 }

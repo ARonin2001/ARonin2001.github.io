@@ -1,0 +1,14 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.inp {
+  width: 100%;
+  line-height: 15px;
+  padding: 15px;
+  background: #efefef;
+  border-radius: 8px;
+  color: #0000004d;
+}
