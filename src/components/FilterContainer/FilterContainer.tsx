@@ -23,7 +23,7 @@ const FilterContainer: React.FC = () => {
         </div>
         <div className={style.filterContainer}>
           <Filter>
-            <FilterLIst title={'Locatino'} Child={FilterSelect} />
+            <FilterLIst title={'Location'} Child={FilterSelect} />
           </Filter>
         </div>
         <div className={style.filterContainer}>

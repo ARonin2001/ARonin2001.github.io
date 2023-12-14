@@ -3,14 +3,14 @@
   overflow: hidden;
 
   &:hover {
-    background: #000000;
-    color: #fff;
+    background: var(--li-hover-background);
+    color: var(--li-hover-color);
   }
 
   .content {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 175px;
+    max-width: calc(100% - 39px);
   }
 }

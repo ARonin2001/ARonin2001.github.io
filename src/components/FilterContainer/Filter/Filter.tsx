@@ -12,8 +12,10 @@ const Filter = (props: FilterProps) => {
   const classActive = active ? style.active : '';
 
   const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    console.log(e.target);
-    setActive((prev) => !prev);
+    let hasAttribute = 'data-btn-delete' in (e.target as any).attributes;
+    let isSpan = (e.target as any).tagName === 'SPAN';
+
+    if (!hasAttribute && !isSpan) setActive((prev) => !prev);
   };
 
   return (

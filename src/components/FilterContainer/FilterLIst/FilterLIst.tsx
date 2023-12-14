@@ -66,7 +66,7 @@ const FilterLIst: React.FC<Props> = ({ Child, title }) => {
 
       <div className={style.arrow}></div>
       {isDeleteTitle && (
-        <div className={style.delete} onClick={toTitleDefault}>
+        <div data-btn-delete className={style.delete} onClick={toTitleDefault}>
           <span></span>
           <span></span>
         </div>

@@ -20,3 +20,38 @@
     url('./fonts/Roboto/Roboto-Bold.ttf') format('truetype');
   font-weight: 700;
 }
+
+:root {
+  --body-background: #fff;
+  --primary-border-color: #0000004d;
+  --font-color: #000;
+  --input-create-background: #efefef;
+  --active-filter-border: #000;
+  --filter-background: #fff;
+  --li-hover-background: #000;
+  --li-hover-color: #fff;
+  --background-dash: #000;
+  --input-name-color: #0000004d;
+  --select-top-border: #0000004d;
+  --btn-arrow-background: #0000004d;
+}
+
+[data-theme='dark'] {
+  --body-background: #000;
+  --primary-border-color: #fff;
+  --font-color: #fff;
+  --input-create-background: #fff;
+  --active-filter-border: #fff;
+  --filter-background: linear-gradient(0deg, #0c0c0c, #0c0c0c),
+    linear-gradient(0deg, #ffffff, #ffffff);
+  --li-hover-background: #fff;
+  --li-hover-color: #000;
+  --background-dash: #fff;
+  --input-name-color: #ffffff4d;
+  --select-top-border: #ffffff4d;
+  --btn-arrow-background: #ffffff4d;
+}
+
+body {
+  background-color: var(--body-background);
+}

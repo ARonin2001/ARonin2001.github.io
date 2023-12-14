@@ -5,7 +5,6 @@
   max-height: 345px;
   padding: 0;
   cursor: pointer;
-  background-color: #fff;
 
   &.active .children {
     max-height: 345px;
@@ -35,7 +34,7 @@
     border: none;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-top: 6px solid #0000004d;
+    border-top: 6px solid var(--btn-arrow-background);
     transform: translate(-18px, 20px);
     pointer-events: none;
 

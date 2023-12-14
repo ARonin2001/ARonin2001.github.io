@@ -2,7 +2,7 @@
   max-height: 300px;
   height: 100%;
   padding: 10px 0;
-  border-top: 1px solid #0000004d;
+  border-top: 1px solid var(--select-top-border);
 
   .select {
     font-family: 'Roboto-Medium';
