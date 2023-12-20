@@ -2,6 +2,7 @@ import './ResetStyles.module.scss';
 import style from './App.module.scss';
 import Header from './components/Header/Header';
 import FilterContainer from './components/FilterContainer/FilterContainer';
+import Gallery from './components/Gallery/Gallery';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
         <div className={style.main__filter}>
           <FilterContainer />
         </div>
+
         <div className={style.main__gallery}>
-          <div className={style.gallery}>Gallery</div>
+          <Gallery />
         </div>
 
         <div className={style.main__pagination}>

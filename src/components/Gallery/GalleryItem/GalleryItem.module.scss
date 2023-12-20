@@ -1,0 +1,59 @@
+.item {
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: hidden;
+
+  .img {
+    background-size: cover;
+    width: 100%;
+  }
+
+  .link {
+    position: relative;
+    display: block;
+    height: 100%;
+    z-index: 1;
+
+    .info {
+      position: absolute;
+      left: 0;
+      bottom: -115px;
+      max-height: 145px;
+      height: 100%;
+      width: 100%;
+      z-index: 10;
+      color: #000000;
+      background: #ffffffbf;
+      line-height: 20px;
+      transition: all 0.3s;
+
+      &Container {
+        padding: 5px 15px;
+      }
+
+      .title {
+        font-family: 'Roboto-Bold';
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+
+      .description {
+        font-size: 13px;
+
+        &Title {
+          font-family: 'Roboto-Medium';
+          margin-right: 4px;
+        }
+        &Body {
+          font-family: 'Roboto-Light';
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .info {
+      bottom: 0;
+    }
+  }
+}
