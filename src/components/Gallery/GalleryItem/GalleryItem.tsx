@@ -1,25 +1,27 @@
+import Description from './Description/Description';
 import style from './GalleryItem.module.scss';
 
-const GalleryItem: React.FC = () => {
+interface Props {
+  pictureRef: string;
+  imgPath: string;
+  title: string;
+}
+
+const GalleryItem: React.FC<Props> = ({ pictureRef, imgPath, title }) => {
   return (
     <div className={style.item}>
       <div className={style.container}>
-        <a className={style.link} href="#">
-          <img
-            className={style.img}
-            src="http://tokyoyakei.jp/tokyo/tokyo-tower/t-tower-4145l.jpg"
-            alt=""
-          />
+        <a className={style.link} href={imgPath}>
+          <img className={style.img} src={pictureRef} alt={title} />
 
           <div className={style.info}>
             <div className={style.infoContainer}>
-              <h3 className={style.title}>The Night Watch</h3>
+              <h3 className={style.title}>{title}</h3>
 
               <div className={style.descriptionContainer}>
-                <div className={style.description}>
-                  <span className={style.descriptionTitle}>Author:</span>
-                  <span className={style.descriptionBody}>Rembrandt</span>
-                </div>
+                <Description title={'Author:'} body={'Rembrandt'} />
+                <Description title={'Created:'} body={'1642'} />
+                <Description title={'Location:'} body={'The Rijksmuseum'} />
               </div>
             </div>
           </div>

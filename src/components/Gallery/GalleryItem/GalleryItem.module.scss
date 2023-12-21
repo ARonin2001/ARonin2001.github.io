@@ -29,24 +29,15 @@
 
       &Container {
         padding: 5px 15px;
+        overflow: hidden;
+        max-height: 126px;
+        height: 100%;
       }
 
       .title {
         font-family: 'Roboto-Bold';
         font-size: 18px;
         margin-bottom: 6px;
-      }
-
-      .description {
-        font-size: 13px;
-
-        &Title {
-          font-family: 'Roboto-Medium';
-          margin-right: 4px;
-        }
-        &Body {
-          font-family: 'Roboto-Light';
-        }
       }
     }
   }
