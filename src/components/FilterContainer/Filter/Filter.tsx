@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, memo } from 'react';
 
 import style from './Filter.module.scss';
 
@@ -11,16 +11,19 @@ const Filter = (props: FilterProps) => {
 
   const classActive = active ? style.active : '';
 
-  const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-    let hasAttribute = 'data-btn-delete' in (e.target as any).attributes;
-    let isSpan = (e.target as any).tagName === 'SPAN';
+  const setFilterActive = () => {
+    setActive(true);
+  };
 
-    if (!hasAttribute && !isSpan) setActive((prev) => !prev);
+  const setFilterUnactive = () => {
+    setActive(false);
   };
 
   return (
     <div
-      onClick={(e) => handleClick(e)}
+      onFocus={setFilterActive}
+      onBlur={setFilterUnactive}
+      tabIndex={1}
       className={style.filter + ' ' + classActive}
     >
       {props.children}
@@ -28,4 +31,4 @@ const Filter = (props: FilterProps) => {
   );
 };
 
-export default Filter;
+export default memo(Filter);

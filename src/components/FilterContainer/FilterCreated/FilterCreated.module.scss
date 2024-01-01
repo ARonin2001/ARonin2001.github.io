@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
 
-    @media (min-width: 426px) and (max-width: 1024px) {
+    @media (min-width: 375px) and (max-width: 1024px) {
       flex-direction: column;
       max-width: 110px;
       margin: 0 auto;
@@ -23,7 +23,7 @@
     background: var(--background-dash);
     margin: 0 10px;
 
-    @media (min-width: 426px) and (max-width: 1024px) {
+    @media (min-width: 375px) and (max-width: 1024px) {
       margin: 15px 0;
     }
 

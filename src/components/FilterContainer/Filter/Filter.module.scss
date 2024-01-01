@@ -1,9 +1,10 @@
 .filter {
-  grid-area: filt;
   position: relative;
   font-family: 'Roboto-Regular';
   font-size: 13px;
   width: 100%;
+  min-height: 45px;
+  height: 100%;
 
   & > * {
     border: 1px solid var(--primary-border-color);

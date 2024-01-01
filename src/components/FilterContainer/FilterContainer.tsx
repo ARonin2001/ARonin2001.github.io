@@ -10,27 +10,18 @@ const FilterContainer: React.FC = () => {
   return (
     <div className={style.mainContainer}>
       <div className={style.container}>
-        <div className={style.filterContainer}>
-          <Filter>
-            <FilterInput />
-          </Filter>
-        </div>
-
-        <div className={style.filterContainer}>
-          <Filter>
-            <FilterLIst title={'Author'} Child={FilterSelect} />
-          </Filter>
-        </div>
-        <div className={style.filterContainer}>
-          <Filter>
-            <FilterLIst title={'Location'} Child={FilterSelect} />
-          </Filter>
-        </div>
-        <div className={style.filterContainer}>
-          <Filter>
-            <FilterLIst title={'Created'} Child={FilterCreated} />
-          </Filter>
-        </div>
+        <Filter>
+          <FilterInput />
+        </Filter>
+        <Filter>
+          <FilterLIst title={'Author'} Child={FilterSelect} />
+        </Filter>
+        <Filter>
+          <FilterLIst title={'Location'} Child={FilterSelect} />
+        </Filter>
+        <Filter>
+          <FilterLIst title={'Created'} Child={FilterCreated} />
+        </Filter>
       </div>
     </div>
   );
