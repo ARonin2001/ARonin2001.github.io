@@ -1,8 +1,10 @@
-import './ResetStyles.module.scss';
 import style from './App.module.scss';
+import './ResetStyles.module.scss';
+
 import Header from './components/Header/Header';
 import FilterContainer from './components/FilterContainer/FilterContainer';
 import Gallery from './components/Gallery/Gallery';
+import PaginationContainer from './components/PaginationContainer/PaginationContainer';
 
 function App() {
   return (
@@ -21,7 +23,7 @@ function App() {
         </div>
 
         <div className={style.main__pagination}>
-          <div className={style.pagination}>Pagination</div>
+          <PaginationContainer />
         </div>
       </div>
     </div>

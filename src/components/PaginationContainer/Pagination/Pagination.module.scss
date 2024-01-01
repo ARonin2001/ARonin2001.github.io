@@ -1,0 +1,67 @@
+.pagination {
+  display: inline-block;
+
+  .container {
+    display: flex;
+    border-radius: 8px;
+
+    .pages {
+      display: flex;
+    }
+
+    button {
+      border-left: 1px solid var(--font-color);
+      border-right: none;
+    }
+
+    .current {
+      background-color: var(--font-color);
+      color: var(--body-background);
+    }
+
+    .btnsPrev {
+      button {
+        div[class*='Arrow'] {
+          transform: rotate(180deg);
+        }
+
+        &:first-child {
+          border-radius: 8px 0 0 8px;
+
+          div[class*='Arrow']:last-child {
+            margin-left: 6px;
+          }
+        }
+      }
+    }
+
+    .btnsNext {
+      display: flex;
+      button {
+        &:last-child {
+          border-radius: 0 8px 8px 0;
+          border-right: 1px solid var(--font-color);
+
+          div[class*='Arrow']:first-child {
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+
+    .disabled {
+      button {
+        border-color: var(--btn-arrow-background) !important;
+        color: var(--btn-arrow-background);
+
+        & * {
+          background-color: var(--btn-arrow-background);
+        }
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+}
