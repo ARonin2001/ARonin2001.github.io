@@ -1,13 +1,15 @@
 import React, { FC, useEffect } from 'react';
 import { useState } from 'react';
 import style from './FilterLIst.module.scss';
+import { IList } from '../../../models/IList';
 
 interface Props {
   Child: React.FC<any>;
   title: string;
+  list?: IList[];
 }
 
-const FilterLIst: React.FC<Props> = ({ Child, title }) => {
+const FilterLIst: React.FC<Props> = ({ Child, title, list }) => {
   let [activeUl, setActiveUl] = useState(false);
   let [selectTitle, setSelectTitle] = useState('');
   let [isDeleteTitle, setDeleteTitle] = useState(false);
@@ -49,19 +51,7 @@ const FilterLIst: React.FC<Props> = ({ Child, title }) => {
       </li>
 
       <div className={style.children}>
-        <Child
-          setTitle={changeTitle}
-          title={[
-            'sdfsdf',
-            'sdfljlke',
-            'sdlkfjsd',
-            's134123432sdklfjwlkfjewk;lfjewlkfjew;lkwjeflkewjf4',
-            'sdfsdf',
-            'sdfljlke',
-            'sdlkfjsd',
-            's1341234324',
-          ]}
-        />
+        <Child setTitle={changeTitle} list={list} />
       </div>
 
       <div className={style.arrow}></div>

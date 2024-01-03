@@ -1,10 +1,11 @@
-import style from './App.module.scss';
 import './ResetStyles.module.scss';
 
 import Header from './components/Header/Header';
 import FilterContainer from './components/FilterContainer/FilterContainer';
 import Gallery from './components/Gallery/Gallery';
 import PaginationContainer from './components/PaginationContainer/PaginationContainer';
+
+import style from './App.module.scss';
 
 function App() {
   return (

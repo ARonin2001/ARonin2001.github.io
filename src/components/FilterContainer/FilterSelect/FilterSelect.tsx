@@ -5,19 +5,27 @@ import 'simplebar-react/dist/simplebar.min.css';
 import './ScrollBar.css';
 import style from './FilterSelect.module.scss';
 
+import { IList } from '../../../models/IList';
+
 interface Props {
   setTitle: (title: string) => void;
-  title: string[];
+  list: IList[];
 }
 
-const FilterSelect: React.FC<Props> = ({ setTitle, title }) => {
+const FilterSelect: React.FC<Props> = ({ setTitle, list }) => {
+  if (!list) return null;
+
   return (
     <div className={style.container} data-simplebar>
       <SimpleBar style={{ maxHeight: 300 }} forceVisible="y" autoHide={false}>
         <ul className={style.select}>
-          {title.map((el, index) => {
+          {list.map((el, index) => {
             return (
-              <FilterSelectLi key={index} setTitle={setTitle} title={el} />
+              <FilterSelectLi
+                key={el.id}
+                setTitle={setTitle}
+                title={el.title}
+              />
             );
           })}
         </ul>
