@@ -11,7 +11,13 @@ const initialState: AuthorState = { authors: [] };
 export const authorSlice = createSlice({
   name: 'author',
   initialState,
-  reducers: {},
+  reducers: {
+    setAuthors: (state, action) => {
+      state.authors = action.payload || [];
+    },
+  },
 });
+
+export const { setAuthors } = authorSlice.actions;
 
 export default authorSlice.reducer;

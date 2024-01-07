@@ -1,14 +1,10 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import axiosBaseQuery from './axios';
-import { settingsApi } from './settingsApi';
 import { ILocation } from '../models/ILocation';
+import { emptySplitApi } from './emptySplitApi';
 
-export const locationApi = createApi({
-  reducerPath: 'locationApi',
-  baseQuery: axiosBaseQuery({ baseUrl: settingsApi.baseUrl }),
+export const locationApi = emptySplitApi.injectEndpoints({
   endpoints: (builder) => ({
     fetchAllLocations: builder.query<ILocation[], void>({
-      query: () => ({ url: 'locations', method: 'get' }),
+      query: () => ({ url: '/locations', method: 'get' }),
     }),
   }),
 });

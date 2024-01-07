@@ -2,8 +2,7 @@ import './ResetStyles.module.scss';
 
 import Header from './components/Header/Header';
 import FilterContainer from './components/FilterContainer/FilterContainer';
-import Gallery from './components/Gallery/Gallery';
-import PaginationContainer from './components/PaginationContainer/PaginationContainer';
+import MainContent from './components/MainContent/MainContent';
 
 import style from './App.module.scss';
 
@@ -19,13 +18,8 @@ function App() {
           <FilterContainer />
         </div>
 
-        <div className={style.main__gallery}>
-          <Gallery />
-        </div>
-
-        <div className={style.main__pagination}>
-          <PaginationContainer />
-        </div>
+        {/* Components: Gallery, Pagination and etc */}
+        <MainContent />
       </div>
     </div>
   );

@@ -9,9 +9,10 @@ import style from './FilterContainer.module.scss';
 import { authorApi } from '../../services/authorApi';
 import { IList } from '../../models/IList';
 import { locationApi } from '../../services/locationApi';
+import { useEffect } from 'react';
 
 const FilterContainer: React.FC = () => {
-  let { data: authors, error, isLoading } = authorApi.useFetchAllAuthorsQuery();
+  let { data: authors } = authorApi.useFetchAllAuthorsQuery();
 
   let { data: locations } = locationApi.useFetchAllLocationsQuery();
 

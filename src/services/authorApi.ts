@@ -1,16 +1,16 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
 import { IAuthor } from '../models/IAuthor';
-import axiosBaseQuery from './axios';
-import { settingsApi } from './settingsApi';
+import { emptySplitApi } from './emptySplitApi';
 
-export const authorApi = createApi({
-  reducerPath: 'authorApi',
-  baseQuery: axiosBaseQuery({ baseUrl: settingsApi.baseUrl }),
+export const authorApi = emptySplitApi.injectEndpoints({
   endpoints: (builder) => ({
     fetchAllAuthors: builder.query<IAuthor[], void>({
-      query: () => ({ url: 'authors', method: 'get' }),
+      query: () => ({ url: '/authors', method: 'get' }),
+      providesTags: ['allAuthors'],
+    }),
+    getAuthorById: builder.query<IAuthor[], number>({
+      query: (id: number) => ({ url: `/authors?id=${id}`, method: 'get' }),
     }),
   }),
 });
 
-export const { useFetchAllAuthorsQuery } = authorApi;
+export const { useFetchAllAuthorsQuery, useGetAuthorByIdQuery } = authorApi;

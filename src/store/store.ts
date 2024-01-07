@@ -1,18 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import authorReducer from './reducers/authorSlice';
-import { authorApi } from '../services/authorApi';
-import { locationApi } from '../services/locationApi';
+import { emptySplitApi } from '../services/emptySplitApi';
 
 export const store = configureStore({
   reducer: {
     authorReducer,
-    [authorApi.reducerPath]: authorApi.reducer,
-    [locationApi.reducerPath]: locationApi.reducer,
+    [emptySplitApi.reducerPath]: emptySplitApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authorApi.middleware, locationApi.middleware),
+    getDefaultMiddleware().concat(emptySplitApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

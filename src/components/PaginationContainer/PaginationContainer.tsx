@@ -1,12 +1,24 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, memo } from 'react';
 import Pagination from './Pagination/Pagination';
 
-const PaginationContainer = () => {
-  let [curPage, setCurPage] = useState(1);
-  let [countElements, setCountElements] = useState(45);
-  let [numberPagesArr, setNumberPagesArr] = useState<number[]>([]);
+type PaginationContainerProps = {
+  page: number;
+  setPage: (page: number) => void;
+  limit: number;
+  totalPages: number;
+};
 
-  let countPages = useMemo(() => Math.ceil(countElements / 9), [countElements]);
+const PaginationContainer = ({
+  page,
+  setPage,
+  limit,
+  totalPages,
+}: PaginationContainerProps) => {
+  // let [curPage, setCurPage] = useState(1);
+  // let [countElements, setCountElements] = useState(45);
+  let [numberPagesArr, setNumberPagesArr] = useState<number[]>([1, 2, 3]);
+
+  let countPages = useMemo(() => Math.ceil(totalPages / limit), [totalPages]);
 
   const setNumberPagesArrToStart = (): void => {
     let arrPages: number[] = [];
@@ -15,7 +27,7 @@ const PaginationContainer = () => {
       setNumberPagesArr([1, 2, 3]);
     }
 
-    if (countPages < 3) {
+    if (countPages < 3 && countPages !== 0) {
       for (let i = 1; i < countPages + 1; i++) arrPages.push(i);
 
       setNumberPagesArr(arrPages);
@@ -37,29 +49,29 @@ const PaginationContainer = () => {
   };
 
   useEffect(() => {
-    setNumberPagesArrToStart();
+    // setNumberPagesArrToStart();
   }, []);
 
   const toStartPage = (): void => {
-    if (curPage != 1) {
+    if (page != 1) {
       setNumberPagesArrToStart();
-      setCurPage(1);
+      setPage(1);
     }
   };
 
   const toPrevPage = (): void => {
-    if (curPage != 1) onChangeCurrentPage(curPage - 1);
+    if (page != 1) onChangeCurrentPage(page - 1);
   };
 
   const toEndPage = (): void => {
-    if (curPage != countPages) {
+    if (page != countPages) {
       setNumberPagesArrToEnd();
-      setCurPage(countPages);
+      setPage(countPages);
     }
   };
 
   const toNextPage = (): void => {
-    if (curPage != countPages) onChangeCurrentPage(curPage + 1);
+    if (page != countPages) onChangeCurrentPage(page + 1);
   };
 
   const incrementPage = (numberPage: number): number[] => {
@@ -82,20 +94,20 @@ const PaginationContainer = () => {
   const onChangeCurrentPage = (numberPage: number): void => {
     let pages: number[] = numberPagesArr;
 
-    if (curPage - numberPage < 0) pages = incrementPage(numberPage);
+    if (page - numberPage < 0) pages = incrementPage(numberPage);
 
-    if (curPage - numberPage > 0 && numberPagesArr[0] != 1)
+    if (page - numberPage > 0 && numberPagesArr[0] != 1)
       pages = decrementPage(numberPage);
 
     setNumberPagesArr(pages);
-    setCurPage(numberPage);
+    setPage(numberPage);
   };
 
-  if (countElements === 0) return null;
+  if (totalPages === 0) return null;
 
   return (
     <Pagination
-      curPage={curPage}
+      curPage={page}
       toStartPage={toStartPage}
       countPages={countPages}
       numberPagesArr={numberPagesArr}
@@ -107,4 +119,4 @@ const PaginationContainer = () => {
   );
 };
 
-export default PaginationContainer;
+export default memo(PaginationContainer);
