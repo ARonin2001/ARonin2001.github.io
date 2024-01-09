@@ -1,67 +1,87 @@
 import axios from 'axios';
 import { IPainting, IPaintingWithId } from '../models/IPainting';
 import { emptySplitApi } from './emptySplitApi';
-import { authorApi } from './authorApi';
 import { settingsApi } from './settingsApi';
-import { locationApi } from './locationApi';
 import { IAuthor } from '../models/IAuthor';
 import { ILocation } from '../models/ILocation';
+import { authorApi } from './authorApi';
 
 interface PaintingUrlSettings {
   limit?: number;
   page?: number;
-}
-
-interface PaintingTransformResponse {
-  authors: IAuthor[];
-  locations: ILocation[];
-  paintings: IPaintingWithId[];
+  authorId?: number;
+  locationId?: number;
+  name?: string;
+  createdFrom?: string;
+  createdBefore?: string;
 }
 
 export const paintingApi = emptySplitApi.injectEndpoints({
   endpoints: (builder) => ({
-    fetchAllPaintings: builder.query<IPaintingWithId[], void>({
+    fetchAllPaintings: builder.query<IPainting[], void>({
       query: () => ({ url: '/paintings', method: 'get' }),
     }),
     fetchPaintingsWithParams: builder.query<IPainting[], PaintingUrlSettings>({
-      queryFn: async (arg) => {
-        try {
-          const { limit, page } = arg;
+      query: ({
+        limit = 9,
+        page = 1,
+        authorId,
+        locationId,
+        name,
+        createdFrom,
+        createdBefore,
+      }) => ({
+        url: '/paintings',
+        method: 'get',
+        params: {
+          _limit: limit,
+          _page: page,
+          authorId,
+          locationId,
+          name,
+          created_gte: createdFrom,
+          created_lte: createdBefore,
+        },
+      }),
+      transformResponse: async (response: IPaintingWithId[], meta, arg) => {
+        if (!response) return [];
 
-          const authors = await axios
-            .get<IAuthor[]>(settingsApi.baseUrl + `/authors`)
-            .then((res) => res.data);
-          const locations = await axios
-            .get<ILocation[]>(settingsApi.baseUrl + `/locations`)
-            .then((res) => res.data);
-          const paintings = await axios
-            .get<IPaintingWithId[]>(
-              settingsApi.baseUrl + `/paintings?_limit=${limit}&_page=${page}`,
-            )
-            .then((res) => res.data);
+        const { authorId, locationId } = arg;
 
-          const paintingsList: IPainting[] = await paintings?.map(
-            (el: IPaintingWithId) => {
-              return {
-                author:
-                  authors?.find((auth: IAuthor) => el.authorId === auth.id)
-                    ?.name || '',
-                created: el.created,
-                id: el.id,
-                imageUrl: el.imageUrl,
-                location:
-                  locations.find((loc: ILocation) => el.locationId === loc.id)
-                    ?.location || '',
-                name: el.name,
-              };
+        const { data: authors } = await axios.get<IAuthor[]>(
+          settingsApi.baseUrl + '/authors',
+          {
+            params: {
+              authorId,
             },
-          );
+          },
+        );
+        const { data: locations } = await axios.get<ILocation[]>(
+          settingsApi.baseUrl + '/locations',
+          {
+            params: {
+              locationId,
+            },
+          },
+        );
 
-          return paintingsList ? { data: paintingsList } : { data: [] };
-        } catch (error) {
-          return { error };
-        }
+        const paintingsList: IPainting[] = response?.map(
+          (el: IPaintingWithId) => {
+            return {
+              ...el,
+              author:
+                authors?.find((auth: IAuthor) => el.authorId === auth.id)
+                  ?.name || '',
+              location:
+                locations.find((loc: ILocation) => el.locationId === loc.id)
+                  ?.location || '',
+            };
+          },
+        );
+
+        return paintingsList;
       },
+      providesTags: ['PaintingWithParams'],
     }),
   }),
 });

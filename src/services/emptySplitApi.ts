@@ -5,6 +5,6 @@ import { settingsApi } from './settingsApi';
 export const emptySplitApi = createApi({
   reducerPath: 'api',
   baseQuery: axiosBaseQuery({ baseUrl: settingsApi.baseUrl }),
-  tagTypes: ['allAuthors'],
+  tagTypes: ['PaintingWithParams'],
   endpoints: () => ({}),
 });

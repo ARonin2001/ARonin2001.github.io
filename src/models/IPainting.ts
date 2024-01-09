@@ -1,17 +1,26 @@
+// export interface IPainting {
+//   author: string;
+//   created: string;
+//   id: number;
+//   imageUrl: string;
+//   location: string;
+//   name: string;
+// }
+
 export interface IPainting {
-  author: string;
+  author: number | string;
   created: string;
   id: number;
   imageUrl: string;
-  location: string;
+  location: number | string;
   name: string;
 }
 
 export interface IPaintingWithId {
-  authorId: number;
+  authorId: number | string;
   created: string;
   id: number;
   imageUrl: string;
-  locationId: number;
+  locationId: number | string;
   name: string;
 }

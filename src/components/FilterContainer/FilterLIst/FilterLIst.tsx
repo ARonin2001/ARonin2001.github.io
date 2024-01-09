@@ -7,9 +7,23 @@ interface Props {
   Child: React.FC<any>;
   title: string;
   list?: IList[];
+  setItemValueId?: (id: number | undefined) => void;
+  setYearCreatedFrom?: (value: string | undefined) => void;
+  setYearCreatedBefore?: (value: string | undefined) => void;
+  createdFrom?: string | undefined;
+  createdBefore?: string | undefined;
 }
 
-const FilterLIst: React.FC<Props> = ({ Child, title, list }) => {
+const FilterLIst: React.FC<Props> = ({
+  Child,
+  title,
+  list,
+  setItemValueId,
+  setYearCreatedFrom,
+  setYearCreatedBefore,
+  createdFrom,
+  createdBefore,
+}) => {
   let [activeUl, setActiveUl] = useState(false);
   let [selectTitle, setSelectTitle] = useState('');
   let [isDeleteTitle, setDeleteTitle] = useState(false);
@@ -30,14 +44,16 @@ const FilterLIst: React.FC<Props> = ({ Child, title, list }) => {
     if ('data-select' in (e.target as any).attributes) toggleClassActive();
   };
 
-  const changeTitle = (title: string): void => {
+  const changeTitle = (title: string, itemId: number): void => {
     setSelectTitle(title);
+    if (setItemValueId) setItemValueId(itemId);
     toggleClassActive();
   };
 
   const toTitleDefault = (): void => {
     setSelectTitle(title);
     setDeleteTitle(false);
+    if (setItemValueId) setItemValueId(undefined);
   };
 
   return (
@@ -51,7 +67,14 @@ const FilterLIst: React.FC<Props> = ({ Child, title, list }) => {
       </li>
 
       <div className={style.children}>
-        <Child setTitle={changeTitle} list={list} />
+        <Child
+          setTitle={changeTitle}
+          list={list}
+          setYearCreatedFrom={setYearCreatedFrom}
+          setYearCreatedBefore={setYearCreatedBefore}
+          createdFrom={createdFrom}
+          createdBefore={createdBefore}
+        />
       </div>
 
       <div className={style.arrow}></div>

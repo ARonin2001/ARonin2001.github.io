@@ -4,15 +4,15 @@ import style from './Input.module.scss';
 
 interface Props {
   placeholder: string;
+  setInputValue: (value: string | undefined) => void;
+  value: string | undefined;
 }
 
-const Input: React.FC<Props> = ({ placeholder }) => {
-  let [value, setValue] = useState('');
-
+const Input: React.FC<Props> = ({ placeholder, setInputValue, value }) => {
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target;
 
-    setValue(e.target.value);
+    setInputValue(e.target.value);
   };
 
   return (

@@ -1,13 +1,16 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import style from './FilterInput.module.scss';
 
-const FilterInput = () => {
-  let [name, setName] = useState('');
+type FilterInputProps = {
+  setInputValue: (value: string) => void;
+  value: string | undefined;
+};
 
+const FilterInput: React.FC<FilterInputProps> = ({ setInputValue, value }) => {
   const onChangeName = (e: { target: { value: string } }) => {
     let value = e.target.value;
 
-    setName(value);
+    setInputValue(value);
   };
 
   return (
@@ -16,7 +19,7 @@ const FilterInput = () => {
       id="Name"
       className={style.input}
       placeholder="Name"
-      value={name}
+      value={value}
       onChange={(e) => onChangeName(e)}
     />
   );

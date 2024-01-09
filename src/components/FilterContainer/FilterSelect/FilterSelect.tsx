@@ -8,7 +8,7 @@ import style from './FilterSelect.module.scss';
 import { IList } from '../../../models/IList';
 
 interface Props {
-  setTitle: (title: string) => void;
+  setTitle: (title: string, id: number) => void;
   list: IList[];
 }
 
@@ -22,6 +22,7 @@ const FilterSelect: React.FC<Props> = ({ setTitle, list }) => {
           {list.map((el, index) => {
             return (
               <FilterSelectLi
+                id={el.id}
                 key={el.id}
                 setTitle={setTitle}
                 title={el.title}

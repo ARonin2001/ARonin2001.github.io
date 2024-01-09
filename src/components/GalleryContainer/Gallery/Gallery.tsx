@@ -5,23 +5,13 @@ import GalleryItem from './GalleryItem/GalleryItem';
 import style from './Gallery.module.scss';
 
 import { settingsApi } from '../../../services/settingsApi';
-
-interface Paintings {
-  author: string;
-  created: string;
-  id: number;
-  imageUrl: string;
-  location: string;
-  name: string;
-}
+import { IPainting } from '../../../models/IPainting';
 
 type GalleryProps = {
-  limit: number;
-  page: number;
-  listPaintings: Paintings[];
+  listPaintings: IPainting[];
 };
 
-const Gallery: React.FC<GalleryProps> = ({ limit, page, listPaintings }) => {
+const Gallery: React.FC<GalleryProps> = ({ listPaintings }) => {
   if (listPaintings.length === 0) return <h2>Paitings is not to be:</h2>;
 
   return (
@@ -35,8 +25,8 @@ const Gallery: React.FC<GalleryProps> = ({ limit, page, listPaintings }) => {
               pictureRef={settingsApi.baseUrl + el.imageUrl}
               name={el.name}
               created={el.created}
-              author={el.author}
-              location={el.location}
+              author={el.author.toString()}
+              location={el.location.toString()}
             />
           );
         })}
