@@ -1,0 +1,16 @@
+.li {
+  padding: 10px 0 10px 30px;
+  overflow: hidden;
+
+  &:hover {
+    background: var(--li-hover-background);
+    color: var(--li-hover-color);
+  }
+
+  .content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 39px);
+  }
+}

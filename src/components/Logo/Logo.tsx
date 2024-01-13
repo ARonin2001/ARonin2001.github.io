@@ -5,7 +5,9 @@ import style from './Logo.module.scss';
 const Logo = () => {
   return (
     <div className={style.logo}>
-      <img src={logoIcon} alt="Logo Framework Team" className={style.icon} />
+      <a href="#">
+        <img src={logoIcon} alt="Logo Framework Team" className={style.icon} />
+      </a>
     </div>
   );
 };

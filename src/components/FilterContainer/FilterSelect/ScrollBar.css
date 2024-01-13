@@ -1,0 +1,14 @@
+.simplebar-track.simplebar-vertical {
+  top: -10px;
+  overflow: visible;
+  max-height: 293px;
+}
+.simplebar-track {
+  right: 7px;
+}
+.simplebar-scrollbar:before {
+  background: #7b7b7b;
+  border-radius: 10px;
+  opacity: 1 !important;
+  width: 9px;
+}

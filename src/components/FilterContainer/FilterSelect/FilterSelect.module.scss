@@ -1,0 +1,13 @@
+.container {
+  max-height: 300px;
+  height: 100%;
+  padding: 10px 0;
+  border-top: 1px solid var(--select-top-border);
+
+  .select {
+    font-family: 'Roboto-Medium';
+    font-size: 16px;
+    line-height: 20px;
+    max-height: 280px;
+  }
+}
