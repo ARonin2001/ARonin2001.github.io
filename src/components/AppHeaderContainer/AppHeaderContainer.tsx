@@ -4,14 +4,14 @@ import Header from '../Header/Header';
 import style from './AppHeaderContainer.module.scss';
 
 interface AppHeaderContainerProps {
-  setName: (value: string) => void;
-  name: string | undefined;
-  setItemValueId: (id: number | undefined) => void;
-  setItemLocationId: (id: number | undefined) => void;
-  setYearCreatedFrom: (value: string | undefined) => void;
-  setYearCreatedBefore: (value: string | undefined) => void;
-  createdFrom: string | undefined;
-  createdBefore: string | undefined;
+  setName: (value?: string) => void;
+  name?: string;
+  setItemValueId: (id?: number) => void;
+  setItemLocationId: (id?: number) => void;
+  setYearCreatedFrom: (value?: string) => void;
+  setYearCreatedBefore: (value?: string) => void;
+  createdFrom?: string;
+  createdBefore?: string;
 }
 
 const AppHeaderContainer: React.FC<AppHeaderContainerProps> = ({

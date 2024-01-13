@@ -40,7 +40,7 @@ const FilterLIst: React.FC<Props> = ({
   const toggleClassActive = () => setActiveUl((prev: boolean) => !prev);
 
   const handleClick = (e: React.MouseEvent) => {
-    // if teg has attribute data-select that toggleClassActive()
+    // if element has attribute data-select that toggleClassActive()
     if ('data-select' in (e.target as any).attributes) toggleClassActive();
   };
 

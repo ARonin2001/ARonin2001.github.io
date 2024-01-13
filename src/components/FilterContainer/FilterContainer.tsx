@@ -1,8 +1,8 @@
 import Filter from './Filter/Filter';
-import FilterInput from './FilterInput/FilterInput';
 import FilterLIst from './FilterLIst/FilterLIst';
 import FilterSelect from './FilterSelect/FilterSelect';
 import FilterCreated from './FilterCreated/FilterCreated';
+import Input from '../Input/Input';
 
 import style from './FilterContainer.module.scss';
 
@@ -13,14 +13,14 @@ import { ILocation } from '../../models/ILocation';
 import { locationApi } from '../../services/locationApi';
 
 interface FilterContainerProps {
-  name: string | undefined;
-  setName: (value: string) => void;
-  setItemValueId: (id: number | undefined) => void;
-  setItemLocationId: (id: number | undefined) => void;
-  setYearCreatedFrom: (value: string | undefined) => void;
-  setYearCreatedBefore: (value: string | undefined) => void;
-  createdFrom: string | undefined;
-  createdBefore: string | undefined;
+  name?: string;
+  setName: (value?: string) => void;
+  setItemValueId: (id?: number) => void;
+  setItemLocationId: (id?: number) => void;
+  setYearCreatedFrom: (value?: string) => void;
+  setYearCreatedBefore: (value?: string) => void;
+  createdFrom?: string;
+  createdBefore?: string;
 }
 
 const FilterContainer: React.FC<FilterContainerProps> = ({
@@ -51,7 +51,13 @@ const FilterContainer: React.FC<FilterContainerProps> = ({
     <div className={style.mainContainer}>
       <div className={style.container}>
         <Filter>
-          <FilterInput setInputValue={setName} value={name} />
+          <Input
+            setValue={setName}
+            value={name}
+            name={'Name'}
+            type={'text'}
+            className={style.inputName}
+          />
         </Filter>
         <Filter>
           <FilterLIst

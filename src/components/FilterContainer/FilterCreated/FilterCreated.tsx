@@ -1,11 +1,11 @@
+import Input from '../../Input/Input';
 import style from './FilterCreated.module.scss';
-import Input from './Input/Input';
 
 interface FilterCreatedProps {
   setYearCreatedFrom: (value: string | undefined) => void;
   setYearCreatedBefore: (value: string | undefined) => void;
-  createdFrom: string | undefined;
-  createdBefore: string | undefined;
+  createdFrom?: string;
+  createdBefore?: string;
 }
 
 const FilterCreated: React.FC<FilterCreatedProps> = ({
@@ -19,15 +19,19 @@ const FilterCreated: React.FC<FilterCreatedProps> = ({
       <div className={style.form}>
         <div className={style.inputs}>
           <Input
-            placeholder={'from'}
-            setInputValue={setYearCreatedFrom}
+            name={'from'}
+            type={'number'}
             value={createdFrom}
+            setValue={setYearCreatedFrom}
+            className={style.inp}
           />
           <span className={style.dash}></span>
           <Input
-            placeholder={'before'}
-            setInputValue={setYearCreatedBefore}
+            name={'before'}
+            type={'number'}
             value={createdBefore}
+            setValue={setYearCreatedBefore}
+            className={style.inp}
           />
         </div>
       </div>

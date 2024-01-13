@@ -8,7 +8,6 @@ function App() {
   return (
     <div className={style.main}>
       <div className={style.container}>
-        {/* Components: Gallery, Pagination and etc */}
         <MainContent />
       </div>
     </div>

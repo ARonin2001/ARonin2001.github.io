@@ -6,12 +6,12 @@ type AppContentProps = {
   limit: number;
   page: number;
   totalPages: number;
-  name: string | undefined;
+  name?: string;
   setPage: (page: number) => void;
-  authorId: number | undefined;
-  locationId: number | undefined;
-  createdFrom: string | undefined;
-  createdBefore: string | undefined;
+  authorId?: number;
+  locationId?: number;
+  createdFrom?: string;
+  createdBefore?: string;
 };
 
 const AppContent: React.FC<AppContentProps> = ({

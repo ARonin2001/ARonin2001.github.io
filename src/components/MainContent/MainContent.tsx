@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { paintingApi } from '../../services/paintingApi';
 import AppHeaderContainer from '../AppHeaderContainer/AppHeaderContainer';
 import AppContent from '../AppContent/AppContent';
-import { useAppDispatch } from '../../hooks/redux';
 
-const MainContent = () => {
+const MainContent: React.FC = () => {
   let [limit, setLimit] = useState(9);
   let [totalPages, setTotalPages] = useState(0);
   let [page, setPage] = useState(1);
@@ -15,28 +14,22 @@ const MainContent = () => {
   let [createdFrom, setCreatedFrom] = useState<string | undefined>();
   let [createdBefore, setCreatedBefore] = useState<string | undefined>();
 
-  const setNameValue = (value: string) => {
+  const setNameValue = (value?: string) => {
     setName(value ? value : undefined);
-  };
-  const setItemAuthorId = (id: number | undefined) => {
-    setAuthorId(id);
-  };
-  const setItemLocationId = (id: number | undefined) => {
-    setLocationId(id);
-  };
-  const setYearCreatedFrom = (value: string | undefined) => {
-    setCreatedFrom(value ? value : undefined);
-  };
-  const setYearCreatedBefore = (value: string | undefined) => {
-    setCreatedBefore(value ? value : undefined);
   };
 
   let [allPaintingsFetch, { data: allPaintings }] =
-    paintingApi.useLazyFetchAllPaintingsQuery();
+    paintingApi.useLazyFetchPaintingsWithParamsQuery();
 
   useEffect(() => {
-    allPaintingsFetch();
-  }, []);
+    allPaintingsFetch({
+      name,
+      createdBefore,
+      createdFrom,
+      authorId,
+      locationId,
+    });
+  }, [name, createdBefore, createdFrom, authorId, locationId]);
 
   useEffect(() => {
     const countTotalPages = allPaintings?.length ? allPaintings?.length : 0;
@@ -48,10 +41,14 @@ const MainContent = () => {
       {/* Header, Filter. Top (header) app elements */}
       <AppHeaderContainer
         setName={setNameValue}
-        setItemValueId={setItemAuthorId}
-        setItemLocationId={setItemLocationId}
-        setYearCreatedFrom={setYearCreatedFrom}
-        setYearCreatedBefore={setYearCreatedBefore}
+        setItemValueId={(id?: number) => setAuthorId(id)}
+        setItemLocationId={(id?: number) => setLocationId(id)}
+        setYearCreatedFrom={(value?: string) => {
+          setCreatedFrom(value ? value : undefined);
+        }}
+        setYearCreatedBefore={(value?: string) => {
+          setCreatedBefore(value ? value : undefined);
+        }}
         createdFrom={createdFrom}
         createdBefore={createdBefore}
         name={name}

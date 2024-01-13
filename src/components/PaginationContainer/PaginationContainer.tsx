@@ -14,43 +14,39 @@ const PaginationContainer = ({
   limit,
   totalPages,
 }: PaginationContainerProps) => {
-  // let [curPage, setCurPage] = useState(1);
-  // let [countElements, setCountElements] = useState(45);
-  let [numberPagesArr, setNumberPagesArr] = useState<number[]>([1, 2, 3]);
+  const viewNumbers: number[] = [1, 2, 3];
+
+  let [numberPagesArr, setNumberPagesArr] = useState<number[]>(viewNumbers);
 
   let countPages = useMemo(() => Math.ceil(totalPages / limit), [totalPages]);
 
   const setNumberPagesArrToStart = (): void => {
     let arrPages: number[] = [];
 
-    if (countPages >= 3) {
-      setNumberPagesArr([1, 2, 3]);
+    if (countPages >= viewNumbers.length) {
+      setNumberPagesArr(viewNumbers);
     }
 
-    if (countPages < 3 && countPages !== 0) {
+    if (countPages < viewNumbers.length && countPages !== 0) {
       for (let i = 1; i < countPages + 1; i++) arrPages.push(i);
 
       setNumberPagesArr(arrPages);
     }
   };
 
+  useEffect(() => {
+    setNumberPagesArrToStart();
+  }, [totalPages]);
+
   const setNumberPagesArrToEnd = (): void => {
     let arrPages: number[] = [];
 
     if (countPages > 3) {
       for (let i = countPages - 2; i <= countPages; i++) arrPages.push(i);
-    }
 
-    if (countPages <= 3) {
-      for (let i = 1; i < countPages + 1; i++) arrPages.push(i);
+      setNumberPagesArr(arrPages);
     }
-
-    setNumberPagesArr(arrPages);
   };
-
-  useEffect(() => {
-    // setNumberPagesArrToStart();
-  }, []);
 
   const toStartPage = (): void => {
     if (page != 1) {

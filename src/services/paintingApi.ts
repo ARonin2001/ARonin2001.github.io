@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { IPainting, IPaintingWithId } from '../models/IPainting';
 import { emptySplitApi } from './emptySplitApi';
-import { settingsApi } from './settingsApi';
 import { IAuthor } from '../models/IAuthor';
 import { ILocation } from '../models/ILocation';
-import { authorApi } from './authorApi';
+import { urlApi } from './axios';
 
 interface PaintingUrlSettings {
   limit?: number;
@@ -23,8 +22,8 @@ export const paintingApi = emptySplitApi.injectEndpoints({
     }),
     fetchPaintingsWithParams: builder.query<IPainting[], PaintingUrlSettings>({
       query: ({
-        limit = 9,
-        page = 1,
+        limit,
+        page,
         authorId,
         locationId,
         name,
@@ -49,7 +48,7 @@ export const paintingApi = emptySplitApi.injectEndpoints({
         const { authorId, locationId } = arg;
 
         const { data: authors } = await axios.get<IAuthor[]>(
-          settingsApi.baseUrl + '/authors',
+          urlApi + '/authors',
           {
             params: {
               authorId,
@@ -57,7 +56,7 @@ export const paintingApi = emptySplitApi.injectEndpoints({
           },
         );
         const { data: locations } = await axios.get<ILocation[]>(
-          settingsApi.baseUrl + '/locations',
+          urlApi + '/locations',
           {
             params: {
               locationId,
