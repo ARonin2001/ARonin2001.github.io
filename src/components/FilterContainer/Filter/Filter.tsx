@@ -11,8 +11,8 @@ const Filter = (props: FilterProps) => {
 
   const classActive = active ? style.active : '';
 
-  const setFilterActive = () => {
-    setActive(true);
+  const setFilterActive = (e: React.FocusEvent<HTMLDivElement, Element>) => {
+    if (!('data-btn-delete' in (e.target as any).attributes)) setActive(true);
   };
 
   const setFilterUnactive = () => {
@@ -21,7 +21,7 @@ const Filter = (props: FilterProps) => {
 
   return (
     <div
-      onFocus={setFilterActive}
+      onFocus={(e) => setFilterActive(e)}
       onBlur={setFilterUnactive}
       tabIndex={1}
       className={style.filter + ' ' + classActive}

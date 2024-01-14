@@ -7,11 +7,11 @@ interface Props {
   Child: React.FC<any>;
   title: string;
   list?: IList[];
-  setItemValueId?: (id: number | undefined) => void;
-  setYearCreatedFrom?: (value: string | undefined) => void;
-  setYearCreatedBefore?: (value: string | undefined) => void;
-  createdFrom?: string | undefined;
-  createdBefore?: string | undefined;
+  setItemValueId?: (id?: number) => void;
+  setYearCreatedFrom?: (value?: string) => void;
+  setYearCreatedBefore?: (value?: string) => void;
+  createdFrom?: string;
+  createdBefore?: string;
 }
 
 const FilterLIst: React.FC<Props> = ({
@@ -37,17 +37,14 @@ const FilterLIst: React.FC<Props> = ({
 
   let activeClassNameUl = activeUl ? style.active : '';
 
-  const toggleClassActive = () => setActiveUl((prev: boolean) => !prev);
-
-  const handleClick = (e: React.MouseEvent) => {
-    // if element has attribute data-select that toggleClassActive()
-    if ('data-select' in (e.target as any).attributes) toggleClassActive();
+  const handleFocus = (e: React.FocusEvent<HTMLUListElement, Element>) => {
+    if (!('data-btn-delete' in (e.target as any).attributes)) setActiveUl(true);
   };
 
   const changeTitle = (title: string, itemId: number): void => {
     setSelectTitle(title);
     if (setItemValueId) setItemValueId(itemId);
-    toggleClassActive();
+    setActiveUl(false);
   };
 
   const toTitleDefault = (): void => {
@@ -59,8 +56,10 @@ const FilterLIst: React.FC<Props> = ({
   return (
     <ul
       className={style.list + ' ' + activeClassNameUl}
-      onClick={(e) => handleClick(e)}
       data-select
+      onBlur={() => setActiveUl(false)}
+      onFocus={(e) => handleFocus(e)}
+      tabIndex={2}
     >
       <li className={style.title} data-select>
         {selectTitle}
@@ -79,7 +78,12 @@ const FilterLIst: React.FC<Props> = ({
 
       <div className={style.arrow}></div>
       {isDeleteTitle && (
-        <div data-btn-delete className={style.delete} onClick={toTitleDefault}>
+        <div
+          data-btn-delete
+          className={style.delete}
+          tabIndex={0}
+          onClick={toTitleDefault}
+        >
           <span></span>
           <span></span>
         </div>

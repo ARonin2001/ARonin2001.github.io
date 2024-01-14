@@ -5,7 +5,7 @@ import AppHeaderContainer from '../AppHeaderContainer/AppHeaderContainer';
 import AppContent from '../AppContent/AppContent';
 
 const MainContent: React.FC = () => {
-  let [limit, setLimit] = useState(9);
+  let [limit, setLimit] = useState(12);
   let [totalPages, setTotalPages] = useState(0);
   let [page, setPage] = useState(1);
   let [name, setName] = useState<string | undefined>();
