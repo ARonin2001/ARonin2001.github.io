@@ -22,6 +22,8 @@ const MainContent: React.FC = () => {
     paintingApi.useLazyFetchPaintingsWithParamsQuery();
 
   useEffect(() => {
+    if (page !== 1) setPage(1);
+
     allPaintingsFetch({
       name,
       createdBefore,

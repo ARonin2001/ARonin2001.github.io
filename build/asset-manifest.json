@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/FWT_Painting/static/css/main.d54e30d3.css",
-    "main.js": "/FWT_Painting/static/js/main.c5f7c303.js",
+    "main.css": "/FWT_Painting/static/css/main.104b8736.css",
+    "main.js": "/FWT_Painting/static/js/main.c3142dbd.js",
     "static/js/787.d0024f7e.chunk.js": "/FWT_Painting/static/js/787.d0024f7e.chunk.js",
     "static/media/Roboto-Medium.ttf": "/FWT_Painting/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
     "static/media/Roboto-Regular.ttf": "/FWT_Painting/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
@@ -11,12 +11,12 @@
     "static/media/Theme-white-icon.svg": "/FWT_Painting/static/media/Theme-white-icon.7efac3cbec09ed1764a502709e1ae415.svg",
     "static/media/Logo.svg": "/FWT_Painting/static/media/Logo.936e086d4f0a07a7626931eeabbac2ab.svg",
     "index.html": "/FWT_Painting/index.html",
-    "main.d54e30d3.css.map": "/FWT_Painting/static/css/main.d54e30d3.css.map",
-    "main.c5f7c303.js.map": "/FWT_Painting/static/js/main.c5f7c303.js.map",
+    "main.104b8736.css.map": "/FWT_Painting/static/css/main.104b8736.css.map",
+    "main.c3142dbd.js.map": "/FWT_Painting/static/js/main.c3142dbd.js.map",
     "787.d0024f7e.chunk.js.map": "/FWT_Painting/static/js/787.d0024f7e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d54e30d3.css",
-    "static/js/main.c5f7c303.js"
+    "static/css/main.104b8736.css",
+    "static/js/main.c3142dbd.js"
   ]
 }
